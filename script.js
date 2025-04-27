@@ -32,4 +32,3 @@ function displayWeather({ temperature, windspeed, weathercode }) {
 }
 
 fetchWeather();
-
