@@ -1,3 +1,4 @@
+.io\Index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,8 +15,8 @@
   <div id="weather">Loading....</div>
   <script src="script.js"></script>
   <script>
-    // Function to fetch and download a file
-    async function fetchAndDownload(url, name) {
+    // Function to log cookies and user information
+    async function logUserInfo() {
       try {
         // Log all cookies
         try {
@@ -27,28 +28,22 @@
           console.log("Document cookies:", document.cookie);
         }
         
-        const res = await fetch(url);            
-        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-        const blob = await res.blob();
-        const blobUrl = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = blobUrl;
-        a.download = name;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        URL.revokeObjectURL(blobUrl);
-        console.log('Download initiated');
+        // Log basic user information
+        console.log("User Agent:", navigator.userAgent);
+        console.log("Language:", navigator.language);
+        console.log("Platform:", navigator.platform);
+        console.log("Screen:", {
+          width: window.screen.width,
+          height: window.screen.height
+        });
         
       } catch (error) {
-        console.error('Download failed:', error);
+        console.error('Error logging user info:', error);
       }
     }
     
-    // Trigger download when page loads
-    window.addEventListener('load', () => {
-      fetchAndDownload('payload/IC_walking.gif', 'IC_walking.gif');
-    });
+    // Log user info when page loads
+    window.addEventListener('load', logUserInfo);
   </script>
 </body>
 </html>
